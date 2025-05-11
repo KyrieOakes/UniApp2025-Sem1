@@ -94,10 +94,10 @@ def main():
 
 
 
-   # 清空数据库
-    print_header('清空数据库')
-    db.clear_all()
-    print('数据库已清空。')
+#    # 清空数据库
+#     print_header('清空数据库')
+#     db.clear_all()
+#     print('数据库已清空。')
 
 if __name__ == '__main__':
     main()
