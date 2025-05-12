@@ -21,7 +21,7 @@ It includes 4 GUI windows, all fully working and ready to test.
 ### 3. Run:
 
 ```bash
-python3 login_window.py
+python3 main.py
 ```
 
 ✅ This will open the Login Window.
