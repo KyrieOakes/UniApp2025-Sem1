@@ -68,6 +68,14 @@ class Student:
             'password': self.password,
             'subjects': [s.to_dict() for s in self.subjects]
         }
+    
+    def __str__(self):
+        subject_ids = [s.id for s in self.subjects]
+        return (
+            f"ID: {self.id}, Name: {self.name}, Email: {self.email}, "
+            f"Subjects: {subject_ids}, Avg Mark: {self.average_mark():.2f}, "
+            f"Status: {'PASS' if self.passed() else 'FAIL'}"
+        )
 
     @classmethod
     def from_dict(cls, data: dict) -> 'Student':

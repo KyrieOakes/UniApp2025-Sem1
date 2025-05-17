@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "590613",
+    "name": "Alice Tester",
+    "email": "alice.tester@university.com",
+    "password": "Start12345",
+    "subjects": []
+  }
+]
