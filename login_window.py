@@ -28,7 +28,6 @@ def windows():
     root.title("Student Login")
     root.geometry("350x200")
 
-    # ==== 加粗字体 ====
     tk.Label(root, text="Email:", font=("Arial", 12, "bold")).pack(pady=(15, 5))
     email_entry = tk.Entry(root, width=30, font=("Arial", 12, "bold"))
     email_entry.pack()
