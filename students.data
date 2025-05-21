@@ -68,5 +68,89 @@
         "grade": "C"
       }
     ]
+  },
+  {
+    "id": "726000",
+    "name": "Ben Smith",
+    "email": "ben.smith@university.com",
+    "password": "BenSmit123",
+    "subjects": [
+      {
+        "id": "510",
+        "mark": 14,
+        "grade": "F"
+      },
+      {
+        "id": "930",
+        "mark": 24,
+        "grade": "F"
+      },
+      {
+        "id": "918",
+        "mark": 65,
+        "grade": "C"
+      },
+      {
+        "id": "219",
+        "mark": 87,
+        "grade": "HD"
+      }
+    ]
+  },
+  {
+    "id": "648313",
+    "name": "Chloe Nguyen",
+    "email": "chloe.nguyen@university.com",
+    "password": "ChloeN1234",
+    "subjects": [
+      {
+        "id": "365",
+        "mark": 78,
+        "grade": "D"
+      },
+      {
+        "id": "966",
+        "mark": 43,
+        "grade": "F"
+      },
+      {
+        "id": "354",
+        "mark": 68,
+        "grade": "C"
+      },
+      {
+        "id": "424",
+        "mark": 1,
+        "grade": "F"
+      }
+    ]
+  },
+  {
+    "id": "206229",
+    "name": "David Lee",
+    "email": "david.lee@university.com",
+    "password": "DavidL123",
+    "subjects": [
+      {
+        "id": "149",
+        "mark": 69,
+        "grade": "C"
+      },
+      {
+        "id": "462",
+        "mark": 30,
+        "grade": "F"
+      },
+      {
+        "id": "156",
+        "mark": 14,
+        "grade": "F"
+      },
+      {
+        "id": "516",
+        "mark": 39,
+        "grade": "F"
+      }
+    ]
   }
 ]
