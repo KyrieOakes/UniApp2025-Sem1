@@ -102,6 +102,23 @@ class Student:
             total += subject_object.mark
 
         return total / len(self.subjects)
+    
+    def grade(self) -> str:
+        """
+        Return grade string based on average mark.
+        HD: 85+, D: 75–84, C: 65–74, P: 50–64, F: <50
+        """
+        avg = self.average_mark()
+        if avg >= 85:
+            return "HD"
+        elif avg >= 75:
+            return "D"
+        elif avg >= 65:
+            return "C"
+        elif avg >= 50:
+            return "P"
+        else:
+            return "F"
 
     def passed(self) -> bool:
         """
