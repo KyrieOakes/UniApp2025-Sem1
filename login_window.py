@@ -5,37 +5,34 @@ from enrolment_window import open_enrolment_window
 
 def windows():
     db = Database()
-
+   
     @staticmethod
-    def attempt_login():
-        email = email_entry.get()
-        password = password_entry.get()
+    def try_login():
+        em = email_in.get()
+        pw = pw_in.get()
+        if em == "" or pw == "":
+            messagebox.showerror("Oops", "Fill both fields plz")
+            return
 
-        try:
-            student = db.get_student_by_email(email)
-            if student.password == password:
-                print("✅ Login successful.")
-                root.destroy()
-                open_enrolment_window(student)
-            else:
-                print("❌ Incorrect password.")
-                messagebox.showerror("Error", "Incorrect password.")
-        except KeyError:
-            print("❌ Student not found.")
-            messagebox.showerror("Error", "No such student. Please register first.")
+        student = db.get_student_by_email(em)
+        if student and student.password == pw:
+            root.destroy()
+            open_enrolment_window(student)
+        else:
+            messagebox.showerror("Nope", "Wrong info")
 
     root = tk.Tk()
-    root.title("Student Login")
-    root.geometry("350x200")
+    root.title("Log in here")
+    root.geometry("300x150")
 
-    tk.Label(root, text="Email:", font=("Arial", 12, "bold")).pack(pady=(15, 5))
-    email_entry = tk.Entry(root, width=30, font=("Arial", 12, "bold"))
-    email_entry.pack()
+    tk.Label(root, text="Email:").pack()
+    email_in = tk.Entry(root)
+    email_in.pack()
 
-    tk.Label(root, text="Password:", font=("Arial", 12, "bold")).pack(pady=(15, 5))
-    password_entry = tk.Entry(root, width=30, show="*", font=("Arial", 12, "bold"))
-    password_entry.pack()
+    tk.Label(root, text="Password:").pack()
+    pw_in = tk.Entry(root, show="*")
+    pw_in.pack()
 
-    tk.Button(root, text="Login", font=("Arial", 12, "bold"), command=attempt_login).pack(pady=20)
+    tk.Button(root, text="Login", command=try_login).pack(pady=5)
 
     root.mainloop()
