@@ -7,97 +7,95 @@ def print_header(title: str):
 
 
 def main():
-    # 使用测试用数据库文件，避免覆盖正式数据
-    db = Database(path='test_students.data')
+    # Use test database file to avoid overwriting real data
+    db = Database(path='students.data')
 
-    # 清空数据库
-    print_header('清空数据库')
+    # Clear the database
+    print_header('Clear the database')
     db.clear_all()
-    print('数据库已清空。')
+    print('Database has been cleared.')
 
-    # 添加学生
-    print_header('添加新学生')
-    s1 = Student(name='张三', email='zhangsan@university.com', password='Abcde123')
+    # Add students
+    print_header('Add new students')
+    s1 = Student(name='Zhang San', email='zhangsan@university.com', password='Abcde123')
     db.add_student(s1)
-    print(f"添加学生: ID={s1.id}, 姓名={s1.name}, 邮箱={s1.email}")
+    print(f"Added student: ID={s1.id}, Name={s1.name}, Email={s1.email}")
 
-    s2 = Student(name='李四', email='lisi@university.com', password='Qwert123')
+    s2 = Student(name='Li Si', email='lisi@university.com', password='Qwert123')
     db.add_student(s2)
-    print(f"添加学生: ID={s2.id}, 姓名={s2.name}, 邮箱={s2.email}")
+    print(f"Added student: ID={s2.id}, Name={s2.name}, Email={s2.email}")
 
+    # Additional demo students
+    s3 = Student(name='Alice Smith', email='alice@university.com', password='Alice123')
+    db.add_student(s3)
+    print(f"Added student: ID={s3.id}, Name={s3.name}, Email={s3.email}")
 
+    s4 = Student(name='Bob Lee', email='bob@university.com', password='BobLee123')
+    db.add_student(s4)
+    print(f"Added student: ID={s4.id}, Name={s4.name}, Email={s4.email}")
 
-    # 列出所有学生
-    print_header('列出所有学生')
+    s5 = Student(name='Charlie Brown', email='charlie@university.com', password='Charlie321')
+    db.add_student(s5)
+    print(f"Added student: ID={s5.id}, Name={s5.name}, Email={s5.email}")
+
+    # List all students
+    print_header('List all students')
     for stu in db.list_all():
         avg = stu.average_mark()
-        status = '通过' if stu.passed() else '不通过'
-        print(f"ID={stu.id}, 姓名={stu.name}, 平均分={avg:.2f}, 状态={status}")
+        status = 'Pass' if stu.passed() else 'Fail'
+        print(f"ID={stu.id}, Name={stu.name}, Avg Mark={avg:.2f}, Status={status}")
 
-
-
-    # 根据邮箱获取学生
-    print_header('根据邮箱获取学生')
+    # Retrieve student by email
+    print_header('Get student by email')
     stu = db.get_student_by_email('zhangsan@university.com')
-    print(f"找到了学生: {stu.name} (ID={stu.id})")
+    print(f"Student found: {stu.name} (ID={stu.id})")
 
-    # 添加一门新科目
+    # Enroll a subject
     subject = stu.enroll()
-    print(f"添加成功: 科目ID={123}，分数={321}，等级={subject.grade}")
+    print(f"Enrolled successfully: Subject ID={subject.id}, Mark={subject.mark}, Grade={subject.grade}")
 
-    print("当前学生所选科目如下：")
+    print("Subjects enrolled by current student:")
     for sub in stu.subjects:
-        print(f"科目ID={sub.id}，分数={sub.mark}，等级={sub.grade}")
+        print(f"Subject ID={sub.id}, Mark={sub.mark}, Grade={sub.grade}")
 
-
-    # 修改密码并更新
-    print_header('修改密码')
+    # Change password
+    print_header('Change the password')
     stu.change_password('Xyzabc123')
     db.update_student(stu)
-    print(f"密码已更新为: {stu.password}")
+    print(f"Updated password: {stu.password}")
 
-
-
-    # 退选一个科目
-    print_header('退选科目')
+    # Remove subject
+    print_header('Remove subject')
     if stu.subjects:
         sub_id = stu.subjects[0].id
         stu.remove_subject(sub_id)
         db.update_student(stu)
-        print(f"已移除科目ID={sub_id}")
+        print(f"Removed subject -> {sub_id}")
     else:
-        print('未找到科目可移除。')
+        print('No subject found.')
 
-
-
-    # 分区学生 - pass 还是 fail
-    print_header('分区学生（PASS/FAIL）')
+    # Partition by pass/fail
+    print_header('Pass / Fail')
     parts = db.partition_students()
-    print('通过的学生:', [s.name for s in parts['pass']])
-    print('未通过的学生:', [s.name for s in parts['fail']])
+    print('Students who pass the exam:', [s.name for s in parts['pass']])
+    print('Students who fail the exam:', [s.name for s in parts['fail']])
 
-
-
-    # 按 WAM 分组
-    print_header('按平均分分组')
+    # Group students by WAM (Weighted Average Mark)
+    print_header('Group by WAM')
     groups = db.group_students_by_grade()
     for avg, studs in groups.items():
-        print(f"平均分 {avg}: {[s.name for s in studs]}")
+        print(f"Average grade {avg}: {[s.name for s in studs]}")
 
-
-
-    # 删除学生
-    print_header('删除学生')
+    # Delete student
+    print_header('Delete student')
     db.remove_student_by_id(s2.id)
-    print(f"已删除学生ID={s2.id}")
-    print('当前学生列表:', [s.name for s in db.list_all()])
+    print(f"Deleted student ID={s2.id}")
+    print('Current student list:', [s.name for s in db.list_all()])
 
 
-
-#    # 清空数据库
-#     print_header('清空数据库')
-#     db.clear_all()
-#     print('数据库已清空。')
+    # print_header('Delete all - db')
+    # db.clear_all()
+    # print('Database is empty')
 
 if __name__ == '__main__':
     main()
