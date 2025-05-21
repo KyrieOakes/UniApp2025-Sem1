@@ -40,5 +40,33 @@
     "email": "Bob@university.com",
     "password": "ABCDE123456",
     "subjects": []
+  },
+  {
+    "id": "163929",
+    "name": "chris",
+    "email": "chris@university.com",
+    "password": "Chris12345",
+    "subjects": [
+      {
+        "id": "795",
+        "mark": 68,
+        "grade": "C"
+      },
+      {
+        "id": "766",
+        "mark": 3,
+        "grade": "F"
+      },
+      {
+        "id": "737",
+        "mark": 83,
+        "grade": "D"
+      },
+      {
+        "id": "840",
+        "mark": 67,
+        "grade": "C"
+      }
+    ]
   }
 ]
