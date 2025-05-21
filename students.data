@@ -1,30 +1,51 @@
 [
   {
-    "id": "163929",
-    "name": "chris",
-    "email": "chris@university.com",
-    "password": "Chris12345",
+    "id": "489890",
+    "name": "Zhang San",
+    "email": "zhangsan@university.com",
+    "password": "Xyzabc123",
+    "subjects": []
+  },
+  {
+    "id": "243922",
+    "name": "Alice Smith",
+    "email": "alice@university.com",
+    "password": "Alice123",
+    "subjects": []
+  },
+  {
+    "id": "496757",
+    "name": "Bob Lee",
+    "email": "bob@university.com",
+    "password": "BobLee123",
     "subjects": [
       {
-        "id": "795",
-        "mark": 68,
-        "grade": "C"
-      },
-      {
-        "id": "766",
-        "mark": 3,
+        "id": "720",
+        "mark": 8,
         "grade": "F"
       },
       {
-        "id": "737",
-        "mark": 83,
-        "grade": "D"
+        "id": "682",
+        "mark": 9,
+        "grade": "F"
       },
       {
-        "id": "840",
-        "mark": 67,
-        "grade": "C"
+        "id": "136",
+        "mark": 26,
+        "grade": "F"
+      },
+      {
+        "id": "508",
+        "mark": 36,
+        "grade": "F"
       }
     ]
+  },
+  {
+    "id": "058082",
+    "name": "Charlie Brown",
+    "email": "charlie@university.com",
+    "password": "Charlie321",
+    "subjects": []
   }
 ]
