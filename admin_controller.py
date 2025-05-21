@@ -1,64 +1,77 @@
 from database import Database
 
 def admin_menu():
-    db = Database()  
+    db = Database()
 
     while True:
-        print("\n--- Admin Menu ---")
-        print("(s) Show all students")
-        print("(g) Group students by grade")
-        print("(p) Partition students (PASS/FAIL)")
-        print("(r) Remove a student by ID")
-        print("(c) Clear all student data")
-        print("(x) Exit")
+        print("\nAdmin System (c/g/p/r/s/x):")
+        print("(c) clear database: Clear all data on students.data")
+        print("(g) group students: Groups students by grade")
+        print("(p) partition students: Partition students to PASS/FAIL categories")
+        print("(r) remove student: Remove a student by ID")
+        print("(s) show: Show all students")
+        print("(x) exit")
 
         choice = input("Enter your choice: ").lower()
 
-        if choice == 's':
-            students = db.list_all()
-            if not students:
-                print("No students found.")
-            else:
-                print("\n--- Student List ---")
-                for s in students:
-                    print(s)
-        elif choice == 'g':
-            groups = db.group_students_by_grade()
-            if not groups:
-                print("No students to group.")
-            else:
-                print("\n--- Grouped Students by Grade ---")
-                for grade, students in sorted(groups.items()):
-                    print(f"\nGrade: {grade}")
-                    for s in students:
-                        print(f"  {s}")
-        elif choice == 'p':
-            partitions = db.partition_students()
-            if not partitions['pass'] and not partitions['fail']:
-                print("No students to partition.")
-            else:
-                print("\n--- PASS Students ---")
-                for s in partitions['pass']:
-                    print(f"  {s}")
-                print("\n--- FAIL Students ---")
-                for s in partitions['fail']:
-                    print(f"  {s}")
-        elif choice == 'r':
-            student_id = input("Enter the student ID to remove: ")
-            try:
-                db.remove_student_by_id(student_id)
-                print(f"Student {student_id} removed successfully.")
-            except KeyError as e:
-                print(f"Error: {e}")
-        elif choice == 'c':
-            confirm = input("Are you sure you want to delete ALL student records? (yes/no): ").lower()
-            if confirm == 'yes':
+        if choice == 'c':
+            print("Clearing students database")
+            confirm = input("Are you sure you want to clear the database (Y)ES/(N)O: ").lower()
+            if confirm == 'y':
                 db.clear_all()
-                print("All student records have been cleared.")
+                print("Students data cleared")
             else:
                 print("Operation cancelled. No data was deleted.")
+
+        elif choice == 'g':
+            print("\nGrade Grouping")
+            groups = db.group_students_by_grade()
+            if not groups:
+                print("< Nothing to Display >")
+            else:
+                for grade, students in sorted(groups.items()):
+                    for s in students:
+                        avg = round(s.average_mark(), 2)
+                        print(f"{grade} --> [{s.name} :: {s.id} --> GRADE: {s.grade()} - MARK: {avg}]")
+
+        elif choice == 'p':
+            print("\nPASS/FAIL Partition")
+            partitions = db.partition_students()
+            if not partitions['pass'] and not partitions['fail']:
+                print("< Nothing to Display >")
+            else:
+                print("FAIL -->")
+                if not partitions['fail']:
+                    print("[]")
+                else:
+                    for s in partitions['fail']:
+                        print(f"{s.name} :: {s.id} --> GRADE: {s.grade()} - MARK: {s.average_mark():.2f}")
+                print("PASS -->")
+                if not partitions['pass']:
+                    print("[]")
+                else:
+                    for s in partitions['pass']:
+                        print(f"{s.name} :: {s.id} --> GRADE: {s.grade()} - MARK: {s.average_mark():.2f}")
+
+        elif choice == 'r':
+            sid = input("Remove by ID: ")
+            try:
+                db.remove_student_by_id(sid)
+                print(f"Removing Student {sid} Account")
+            except KeyError:
+                print(f"student {sid} does not exist")
+
+        elif choice == 's':
+            print("Student List")
+            students = db.list_all()
+            if not students:
+                print("< Nothing to Display >")
+            else:
+                for s in students:
+                    print(f"{s.name} :: {s.id} --> Email: {s.email}")
+
         elif choice == 'x':
-            print("Exiting admin system.")
             break
+
         else:
             print("Invalid input. Please try again.")
