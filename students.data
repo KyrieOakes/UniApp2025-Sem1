@@ -5,5 +5,40 @@
     "email": "alice.tester@university.com",
     "password": "Start12345",
     "subjects": []
+  },
+  {
+    "id": "821570",
+    "name": "Xiaoxue Xue",
+    "email": "Xiaoxue.Xue@university.com",
+    "password": "ABCDE123456",
+    "subjects": [
+      {
+        "id": "257",
+        "mark": 33,
+        "grade": "F"
+      },
+      {
+        "id": "584",
+        "mark": 84,
+        "grade": "D"
+      },
+      {
+        "id": "831",
+        "mark": 92,
+        "grade": "HD"
+      },
+      {
+        "id": "057",
+        "mark": 78,
+        "grade": "D"
+      }
+    ]
+  },
+  {
+    "id": "025889",
+    "name": "Bob",
+    "email": "Bob@university.com",
+    "password": "ABCDE123456",
+    "subjects": []
   }
 ]
