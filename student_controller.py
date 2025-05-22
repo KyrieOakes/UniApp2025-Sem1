@@ -1,121 +1,125 @@
 from database import Database
 from student import Student
 from subject import Subject
-import re
 
 db = Database()
 
-def validate_email(email):
-    return re.match(r'^[\w\.-]+@university\.com$', email)
-
-def validate_password(password):
-    return re.match(r'^[A-Z][a-zA-Z]{4,}[0-9]{3,}$', password)
-
 def student_menu():
     while True:
-        print("\n=== Student System ===")
-        print("(r) Register")
-        print("(l) Login")
-        print("(x) Exit")
+        print("\n== Student Menu ==")
+        print("1 - Sign up")
+        print("2 - Log in")
+        print("0 - Back")
 
-        choice = input("Choose an option: ").lower()
+        pick = input("Your pick: ")
 
-        if choice == 'r':
-            register_student()
-        elif choice == 'l':
-            login_student()
-        elif choice == 'x':
-            print("Exiting student system.")
+        if pick == "1":
+            signup()
+        elif pick == "2":
+            login()
+        elif pick == "0":
             break
         else:
-            print("Invalid option.")
+            print("Try again lol")
 
-def register_student():
-    print("\n--- Register ---")
-    name = input("Enter your name: ")
-    email = input("Enter your email: ")
-    password = input("Enter your password: ")
+def signup():
+    print("\n-- Register --")
+    name = input("Name: ")
+    email = input("Email (must be @university.com): ")
+    pw = input("Password (Cap letter + 5 letters + 3 numbers): ")
 
-    if not validate_email(email):
-        print("Invalid email format. Must end with @university.com")
+    if not email.endswith("@university.com"):
+        print("Email format wrong.")
         return
 
-    if not validate_password(password):
-        print("Invalid password. Must start with uppercase, have at least 5 letters, and end with 3+ digits.")
+    if len(pw) < 8 or not pw[0].isupper():
+        print("Password rules not met.")
         return
 
-    try:
-        if db.get_student_by_email(email):
-            print("Email already registered.")
-            return
-    except KeyError:
-        pass 
-
-    student = Student(name, email, password)
-    db.add_student(student)
-    print(f"Registration successful! Your student ID is {student.id}")
-
-def login_student():
-    print("\n--- Login ---")
-    email = input("Enter your email: ")
-    password = input("Enter your password: ")
-
-    try:
-        student = db.get_student_by_email(email)
-    except KeyError:
-        print("Student not found.")
+    if db.get_student_by_email(email):
+        print("Already used email.")
         return
 
-    if student.password != password:
-        print("Incorrect password.")
-        return
+    stu = Student(name, email, pw)
+    db.add_student(stu)
+    print(f"Welcome {name}, your ID is {stu.id}")
 
-    print(f"Welcome, {student.name}!")
-    subject_enrolment_menu(student)
+def login():
+    print("\n-- Log in --")
+    email = input("Email: ")
+    pw = input("Password: ")
 
-def subject_enrolment_menu(student):
+    student = db.get_student_by_email(email)
+    if student and student.password == pw:
+        print(f"Hey {student.name}!")
+        course_menu(student)
+    else:
+        print("Login failed.")
+
+def course_menu(student):
     while True:
-        print(f"\n=== Subject Enrolment for {student.name} ===")
-        print("(e) Enrol")
-        print("(r) Remove a subject")
-        print("(s) Show enrolled subjects")
-        print("(c) Change password")
-        print("(x) Exit")
+        print("\n== Course Things ==")
+        print("1 - Enrol")
+        print("2 - Drop")
+        print("3 - See subjects")
+        print("4 - Change pass")
+        print("0 - Log out")
 
-        choice = input("Choose: ").lower()
+        pick = input("What now? ")
 
-        if choice == 'e':
-            if len(student.subjects) >= 4:
-                print("You have already enrolled in 4 subjects.")
-                continue
-            subject = student.enroll() 
-            db.update_student(student)
-            print(f"Enrolled in subject {subject.id} with mark {subject.mark}, grade {subject.grade}")
-
-        elif choice == 'r':
-            sub_id = input("Enter subject ID to remove: ")
-            if student.remove_subject(sub_id):
-                db.update_student(student)
-                print("Subject removed.")
-            else:
-                print("Subject not found.")
-
-        elif choice == 's':
-            if not student.subjects:
-                print("No subjects enrolled.")
-            for sub in student.subjects:
-                print(f"ID: {sub.id}, Mark: {sub.mark}, Grade: {sub.grade}")
-
-        elif choice == 'c':
-            new_pass = input("Enter new password: ")
-            if validate_password(new_pass):
-                student.change_password(new_pass)  
-                db.update_student(student)
-                print("Password changed.")
-            else:
-                print("Invalid password format.")
-
-        elif choice == 'x':
+        if pick == "1":
+            add_subject(student)
+        elif pick == "2":
+            drop_subject(student)
+        elif pick == "3":
+            show_subjects(student)
+        elif pick == "4":
+            update_pw(student)
+        elif pick == "0":
+            print("Bye.")
             break
         else:
-            print("Invalid option.")
+            print("Try a real option")
+
+def add_subject(student):
+    if len(student.subjects) >= 4:
+        print("4 subjects max.")
+        return
+
+    name = input("ID for new subject: ")
+    for s in student.subjects:
+        if s.id == name:
+            print("Already got that one.")
+            return
+
+    new = Subject(name)
+    student.subjects.append(new)
+    db.update_student(student)
+    print(f"{name} added! Mark: {new.mark}, Grade: {new.grade}")
+
+def drop_subject(student):
+    name = input("ID to remove: ")
+    for s in student.subjects:
+        if s.id == name:
+            student.subjects.remove(s)
+            db.update_student(student)
+            print(f"{name} gone.")
+            return
+    print("Not found.")
+
+def show_subjects(student):
+    if not student.subjects:
+        print("You got none.")
+        return
+    print("\n-- Your Subjects --")
+    for s in student.subjects:
+        print(f"{s.id} - {s.mark} - {s.grade}")
+
+def update_pw(student):
+    new = input("New password: ")
+    if new == "":
+        print("Nope, can't be blank.")
+        return
+    student.password = new
+    db.update_student(student)
+    print("Changed.")
