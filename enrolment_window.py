@@ -26,10 +26,12 @@ def open_enrolment_window(student):
             return
         sid = sub_input.get()
         if sid.strip() == "":
+            # Show error message if something goes wrong
             messagebox.showerror("Uhh...", "Type something!")
             return
         for s in student.subjects:
             if s.id == sid:
+                # Show success message after enrolment
                 messagebox.showinfo("Oops", "Already got that one.")
                 return
         newsub = Subject(sid)
