@@ -6,7 +6,7 @@ from subject import Subject
 db = Database()
 
 def open_enrolment_window(student):
-    win = tk.Toplevel() 
+    win = tk.Tk() 
     win.title("Enrolment Stuff")
     win.geometry("400x300")
 
