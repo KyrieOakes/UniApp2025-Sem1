@@ -3,6 +3,16 @@
 
 # CLIUniApp & GUIUniApp
 
+Group Members:
+
+| Name        | Student ID | Email                          |
+| ----------- | ---------- | ------------------------------ |
+| Ruijie Fan  | 25665415   | Ruijie.Fan@student.uts.edu.au  |
+| Xiaoxue Xue | 25734017   | Xiaoxue.Xue@student.uts.edu.au |
+| Remila Aili | 24713327   | Remila.Aili@student.uts.edu.au |
+
+
+
 ## 🔧 How to Run the Application
 
 1. **Initialize Sample Data**
