@@ -2,8 +2,32 @@ from student import Student
 from subject import Subject
 from database import Database
 
+
 def print_header(title: str):
     print(f"\n=== {title} ===")
+
+
+def prepare_demo_data():
+    db = Database(path='students.data')
+    db.clear_all()
+
+   
+    students = [
+        Student(name='student_a', email='abc@university.com', password='Abcde123'),
+        Student(name='student_b', email='bcd@university.com', password='Abcde123'),
+        Student(name='student_c', email='cde@university.com', password='Abcde123'),
+        Student(name='student_d', email='def@university.com', password='Abcde123'),
+        Student(name='student_e', email='efg@university.com', password='Abcde123'),
+    ]
+
+    for s in students:
+        db.add_student(s)
+        
+        s.enroll()
+        db.update_student(s)
+        print(f"Prepared: {s.name}, Email: {s.email}, Subjects: {len(s.subjects)}")
+
+    print("Demo data has been prepared.")
 
 
 def main():
@@ -99,3 +123,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    prepare_demo_data()
