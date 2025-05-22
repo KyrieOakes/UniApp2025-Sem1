@@ -18,10 +18,13 @@ def open_withdraw_window(student):
         for sub in student.subjects:
             if sub.id == name:
                 student.subjects.remove(sub)
+                # Update the student info in the database
                 db.update_student(student)
+                # Show message when subject is withdrawn
                 messagebox.showinfo("Removed", f"{name} has been removed.")
                 win.destroy()
                 return
+                # Show error if subject not found
         messagebox.showerror("Not Found", f"No subject named {name}.")
-
+        # Button to remove the subject
     tk.Button(win, text="Remove", command=remove).pack(pady=10)
