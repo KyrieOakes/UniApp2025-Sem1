@@ -16,28 +16,21 @@ def main():
     print('Database has been cleared.')
 
     # Add students
-    print_header('Add new students')
-    s1 = Student(name='Zhang San', email='zhangsan@university.com', password='Abcde123')
-    db.add_student(s1)
-    print(f"Added student: ID={s1.id}, Name={s1.name}, Email={s1.email}")
+    print_header('Add new students with subjects')
 
-    s2 = Student(name='Li Si', email='lisi@university.com', password='Qwert123')
-    db.add_student(s2)
-    print(f"Added student: ID={s2.id}, Name={s2.name}, Email={s2.email}")
+    def create_student(name, email, password):
+        s = Student(name=name, email=email, password=password)
+        for _ in range(4):  # Each student gets 4 subjects
+            subj = s.enroll()
+        db.add_student(s)
+        print(f" {s.name} added | ID={s.id} | Avg={s.average_mark():.2f} | Status={s.grade()}")
+        return s
 
-    # Additional demo students
-    s3 = Student(name='Alice Smith', email='alice@university.com', password='Alice123')
-    db.add_student(s3)
-    print(f"Added student: ID={s3.id}, Name={s3.name}, Email={s3.email}")
-
-    s4 = Student(name='Bob Lee', email='bob@university.com', password='BobLee123')
-    db.add_student(s4)
-    print(f"Added student: ID={s4.id}, Name={s4.name}, Email={s4.email}")
-
-    s5 = Student(name='Charlie Brown', email='charlie@university.com', password='Charlie321')
-    db.add_student(s5)
-    print(f"Added student: ID={s5.id}, Name={s5.name}, Email={s5.email}")
-
+    s1 = create_student('Zhang San', 'zhangsan@university.com', 'Abcde123')
+    s2 = create_student('Li Si', 'lisi@university.com', 'Qwert123')
+    s3 = create_student('Alice Smith', 'alice@university.com', 'Alice123')
+    s4 = create_student('Bob Lee', 'bob@university.com', 'BobLee123')
+    s5 = create_student('Charlie Brown', 'charlie@university.com', 'Charlie321')
     # List all students
     print_header('List all students')
     for stu in db.list_all():
@@ -51,9 +44,6 @@ def main():
     print(f"Student found: {stu.name} (ID={stu.id})")
 
     # Enroll a subject
-    subject = stu.enroll()
-    print(f"Enrolled successfully: Subject ID={subject.id}, Mark={subject.mark}, Grade={subject.grade}")
-
     print("Subjects enrolled by current student:")
     for sub in stu.subjects:
         print(f"Subject ID={sub.id}, Mark={sub.mark}, Grade={sub.grade}")
