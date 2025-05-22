@@ -16,7 +16,7 @@ def open_withdraw_window(student):
     def remove():
         name = subject_entry.get()
         for sub in student.subjects:
-            if sub.name == name:
+            if sub.id == name:
                 student.subjects.remove(sub)
                 db.update_student(student)
                 messagebox.showinfo("Removed", f"{name} has been removed.")
