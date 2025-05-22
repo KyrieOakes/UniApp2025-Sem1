@@ -1,0 +1,156 @@
+[
+  {
+    "id": "590613",
+    "name": "Alice Tester",
+    "email": "alice.tester@university.com",
+    "password": "Start12345",
+    "subjects": []
+  },
+  {
+    "id": "821570",
+    "name": "Xiaoxue Xue",
+    "email": "Xiaoxue.Xue@university.com",
+    "password": "ABCDE123456",
+    "subjects": [
+      {
+        "id": "257",
+        "mark": 33,
+        "grade": "F"
+      },
+      {
+        "id": "584",
+        "mark": 84,
+        "grade": "D"
+      },
+      {
+        "id": "831",
+        "mark": 92,
+        "grade": "HD"
+      },
+      {
+        "id": "057",
+        "mark": 78,
+        "grade": "D"
+      }
+    ]
+  },
+  {
+    "id": "025889",
+    "name": "Bob",
+    "email": "Bob@university.com",
+    "password": "ABCDE123456",
+    "subjects": []
+  },
+  {
+    "id": "163929",
+    "name": "chris",
+    "email": "chris@university.com",
+    "password": "Chris12345",
+    "subjects": [
+      {
+        "id": "795",
+        "mark": 68,
+        "grade": "C"
+      },
+      {
+        "id": "766",
+        "mark": 3,
+        "grade": "F"
+      },
+      {
+        "id": "737",
+        "mark": 83,
+        "grade": "D"
+      },
+      {
+        "id": "840",
+        "mark": 67,
+        "grade": "C"
+      }
+    ]
+  },
+  {
+    "id": "726000",
+    "name": "Ben Smith",
+    "email": "ben.smith@university.com",
+    "password": "BenSmit123",
+    "subjects": [
+      {
+        "id": "510",
+        "mark": 14,
+        "grade": "F"
+      },
+      {
+        "id": "930",
+        "mark": 24,
+        "grade": "F"
+      },
+      {
+        "id": "918",
+        "mark": 65,
+        "grade": "C"
+      },
+      {
+        "id": "219",
+        "mark": 87,
+        "grade": "HD"
+      }
+    ]
+  },
+  {
+    "id": "648313",
+    "name": "Chloe Nguyen",
+    "email": "chloe.nguyen@university.com",
+    "password": "ChloeN1234",
+    "subjects": [
+      {
+        "id": "365",
+        "mark": 78,
+        "grade": "D"
+      },
+      {
+        "id": "966",
+        "mark": 43,
+        "grade": "F"
+      },
+      {
+        "id": "354",
+        "mark": 68,
+        "grade": "C"
+      },
+      {
+        "id": "424",
+        "mark": 1,
+        "grade": "F"
+      }
+    ]
+  },
+  {
+    "id": "206229",
+    "name": "David Lee",
+    "email": "david.lee@university.com",
+    "password": "DavidL123",
+    "subjects": [
+      {
+        "id": "149",
+        "mark": 69,
+        "grade": "C"
+      },
+      {
+        "id": "462",
+        "mark": 30,
+        "grade": "F"
+      },
+      {
+        "id": "156",
+        "mark": 14,
+        "grade": "F"
+      },
+      {
+        "id": "516",
+        "mark": 39,
+        "grade": "F"
+      }
+    ]
+  }
+]
