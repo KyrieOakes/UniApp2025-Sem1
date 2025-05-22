@@ -6,7 +6,6 @@ from enrolment_window import open_enrolment_window
 def windows():
     db = Database()
    
-    @staticmethod
     def try_login():
         em = email_in.get()
         pw = pw_in.get()
